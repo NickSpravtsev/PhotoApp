@@ -8,7 +8,7 @@
 import UIKit
 
 class SearchPhotoViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemCyan
