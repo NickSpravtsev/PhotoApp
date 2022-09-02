@@ -12,6 +12,8 @@ class AlbumPhotoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .red
+        title = "Альбомы"
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
 }
 

@@ -25,31 +25,34 @@ class PhotoTabBarController: UITabBarController, UITabBarControllerDelegate {
     }
 
     private func setupTabBarViewControllers() {
-        let mediaLibraryViewController = MediaLibraryViewController()
+        let mediaLibraryNavigationController = UINavigationController(rootViewController: MediaLibraryViewController())
         let mediaLibraryTabBarItem = UITabBarItem(title: "Медиатека",
                                                   image: UIImage(systemName: "photo.fill.on.rectangle.fill"),
                                                   selectedImage: UIImage(systemName: "photo.fill.on.rectangle.fill"))
-        mediaLibraryViewController.tabBarItem = mediaLibraryTabBarItem
+        mediaLibraryNavigationController.tabBarItem = mediaLibraryTabBarItem
 
-        let personalPhotoViewController = PersonalPhotoViewController()
+        let personalPhotoNavigationController = UINavigationController(rootViewController: PersonalPhotoViewController())
         let personalPhotoTabBarItem = UITabBarItem(title: "Для Вас",
                                                    image: UIImage(systemName: "heart.text.square.fill"),
                                                    selectedImage: UIImage(systemName: "heart.text.square.fill"))
-        personalPhotoViewController.tabBarItem = personalPhotoTabBarItem
+        personalPhotoNavigationController.tabBarItem = personalPhotoTabBarItem
 
-        let albumPhotoViewController = AlbumPhotoViewController()
+        let albumPhotoNavigationController = UINavigationController(rootViewController: AlbumPhotoViewController())
         let albumPhotoTabBarItem = UITabBarItem(title: "Альбомы",
                                                 image: UIImage(systemName: "rectangle.stack.fill"),
                                                 selectedImage: UIImage(systemName: "rectangle.stack.fill"))
-        albumPhotoViewController.tabBarItem = albumPhotoTabBarItem
+        albumPhotoNavigationController.tabBarItem = albumPhotoTabBarItem
 
-        let searchPhotoViewController = SearchPhotoViewController()
+        let searchPhotoNavigationController = UINavigationController(rootViewController: SearchPhotoViewController())
         let searchPhotoTabBarItem = UITabBarItem(title: "Поиск",
                                                  image: UIImage(systemName: "magnifyingglass"),
                                                  selectedImage: UIImage(systemName: "magnifyingglass"))
-        searchPhotoViewController.tabBarItem = searchPhotoTabBarItem
+        searchPhotoNavigationController.tabBarItem = searchPhotoTabBarItem
 
-        let controllers = [mediaLibraryViewController, personalPhotoViewController, albumPhotoViewController, searchPhotoViewController]
+        let controllers = [mediaLibraryNavigationController,
+                           personalPhotoNavigationController,
+                           albumPhotoNavigationController,
+                           searchPhotoNavigationController]
         self.setViewControllers(controllers, animated: true)
         self.selectedIndex = 2
     }
