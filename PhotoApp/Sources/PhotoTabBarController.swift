@@ -51,6 +51,7 @@ class PhotoTabBarController: UITabBarController, UITabBarControllerDelegate {
 
         let controllers = [mediaLibraryViewController, personalPhotoViewController, albumPhotoViewController, searchPhotoViewController]
         self.setViewControllers(controllers, animated: true)
+        self.selectedIndex = 2
     }
 
 }
