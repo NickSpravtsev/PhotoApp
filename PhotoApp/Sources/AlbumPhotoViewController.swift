@@ -157,10 +157,11 @@ extension AlbumPhotoViewController: UICollectionViewDataSource, UICollectionView
 
         switch indexPath.section {
         case 0, 1:
-            let cell = albumPhotoCollectionalView.dequeueReusableCell(withReuseIdentifier: AlbumCompositionalCell.identifier, for: indexPath)
-            cell.backgroundColor = .systemGreen
+            let cell = albumPhotoCollectionalView.dequeueReusableCell(withReuseIdentifier: AlbumCompositionalCell.identifier, for: indexPath) as? AlbumCompositionalCell
+            cell?.albumItem = albumItems?[indexPath.section][indexPath.row]
 
-            return cell
+
+            return cell ?? UICollectionViewCell()
         case 2, 3:
             let cell = albumPhotoCollectionalView.dequeueReusableCell(withReuseIdentifier: PhotoTableCell.identifier, for: indexPath)
             cell.backgroundColor = .systemBlue
