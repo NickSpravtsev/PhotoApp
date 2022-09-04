@@ -145,9 +145,9 @@ extension AlbumPhotoViewController: UICollectionViewDataSource, UICollectionView
         case 1:
             return 5
         case 2:
-            return 10
+            return 9
         case 3:
-            return 3
+            return 2
         default:
             return 0
         }

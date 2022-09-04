@@ -13,14 +13,14 @@ struct AlbumItem {
     var photoCount: Int
 
     init(imageName: String, name: String, photoCount: Int) {
-        self.image = UIImage(named: "\(imageName)") ?? .remove
+        self.image = UIImage(named: imageName) ?? .remove
         self.name = name
         self.photoCount = photoCount
     }
 }
 
 extension AlbumItem {
-    static let albumItems: [[AlbumItem]] = [
+    static var albumItems: [[AlbumItem]] = [
         [AlbumItem(imageName: "recentAlbumImage", name: "Недавние", photoCount: 1024),
          AlbumItem(imageName: "favoritesAlbumImage", name: "Избранное", photoCount: 10),
          AlbumItem(imageName: "whatsAppAlbumImage", name: "WhatsApp", photoCount: 5),
