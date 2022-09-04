@@ -51,25 +51,50 @@ class AlbumPhotoViewController: UIViewController {
     
     private func createCompositionalLayout() -> UICollectionViewCompositionalLayout {
         return UICollectionViewCompositionalLayout { sectorIndex, _ in
-            let albumItemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalWidth(1))
-            let albumLayoutItem = NSCollectionLayoutItem(layoutSize: albumItemSize)
-            albumLayoutItem.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 10)
-            
-            let albumGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1 / 2.2), heightDimension: .fractionalWidth(1))
-            let albumLayoutGroup = NSCollectionLayoutGroup.vertical(layoutSize: albumGroupSize, subitem: albumLayoutItem, count: 2)
-            
-            let albumSectionLayout = NSCollectionLayoutSection(group: albumLayoutGroup)
-            albumSectionLayout.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 0)
-            albumSectionLayout.orthogonalScrollingBehavior = .groupPaging
-
-            let albumSectionHeaderSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(44))
-            let albumSectionHeaderLayout = NSCollectionLayoutBoundarySupplementaryItem(
-                layoutSize: albumSectionHeaderSize,
-                elementKind: UICollectionView.elementKindSectionHeader,
-                alignment: .top)
-            albumSectionLayout.boundarySupplementaryItems = [albumSectionHeaderLayout]
-            
-            return albumSectionLayout
+            switch sectorIndex{
+            case 0:
+                let albumItemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalWidth(1))
+                let albumLayoutItem = NSCollectionLayoutItem(layoutSize: albumItemSize)
+                albumLayoutItem.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 10)
+                
+                let albumGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1 / 2.2), heightDimension: .fractionalWidth(1))
+                let albumLayoutGroup = NSCollectionLayoutGroup.vertical(layoutSize: albumGroupSize, subitem: albumLayoutItem, count: 2)
+                
+                let albumSectionLayout = NSCollectionLayoutSection(group: albumLayoutGroup)
+                albumSectionLayout.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 20, bottom: 20, trailing: 0)
+                albumSectionLayout.orthogonalScrollingBehavior = .groupPaging
+                
+                let albumSectionHeaderSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(44))
+                let albumSectionHeaderLayout = NSCollectionLayoutBoundarySupplementaryItem(
+                    layoutSize: albumSectionHeaderSize,
+                    elementKind: UICollectionView.elementKindSectionHeader,
+                    alignment: .top)
+                albumSectionLayout.boundarySupplementaryItems = [albumSectionHeaderLayout]
+                
+                return albumSectionLayout
+            case 1:
+                let albumItemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalWidth(1))
+                let albumLayoutItem = NSCollectionLayoutItem(layoutSize: albumItemSize)
+                albumLayoutItem.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 10)
+                
+                let albumGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1 / 2.2), heightDimension: .fractionalWidth(1 / 2.2))
+                let albumLayoutGroup = NSCollectionLayoutGroup.vertical(layoutSize: albumGroupSize, subitem: albumLayoutItem, count: 1)
+                
+                let albumSectionLayout = NSCollectionLayoutSection(group: albumLayoutGroup)
+                albumSectionLayout.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 0)
+                albumSectionLayout.orthogonalScrollingBehavior = .groupPaging
+                
+                let albumSectionHeaderSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(44))
+                let albumSectionHeaderLayout = NSCollectionLayoutBoundarySupplementaryItem(
+                    layoutSize: albumSectionHeaderSize,
+                    elementKind: UICollectionView.elementKindSectionHeader,
+                    alignment: .top)
+                albumSectionLayout.boundarySupplementaryItems = [albumSectionHeaderLayout]
+                
+                return albumSectionLayout
+            default:
+                return nil
+            }
         }
     }
     
@@ -83,8 +108,20 @@ class AlbumPhotoViewController: UIViewController {
 // MARK: - Extensions
 
 extension AlbumPhotoViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 2
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 7
+        switch section {
+        case 0:
+            return 9
+        case 1:
+            return 7
+        default:
+            return 0
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -93,12 +130,18 @@ extension AlbumPhotoViewController: UICollectionViewDataSource, UICollectionView
         
         return cell
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: AlbumSectionHeader.identifier, for: indexPath) as? AlbumSectionHeader
-        header?.sectionHeaderLabel.text = "Мои альбомы"
         
-
+        switch indexPath.section {
+        case 0:
+            header?.sectionHeaderLabel.text = "Мои альбомы"
+        case 1:
+            header?.sectionHeaderLabel.text = "Общие альбомы"
+        default:
+            header?.sectionHeaderLabel.text = ""
+        }
         return header ?? UICollectionReusableView()
     }
 }
