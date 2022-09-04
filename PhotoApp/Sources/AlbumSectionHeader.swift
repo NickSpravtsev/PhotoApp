@@ -24,7 +24,7 @@ class AlbumSectionHeader: UICollectionReusableView {
         return label
     }()
     
-    private lazy var sectionHeaderButton: UIButton = {
+    lazy var sectionHeaderButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Все", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .regular)

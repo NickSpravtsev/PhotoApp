@@ -15,7 +15,8 @@ class AlbumPhotoViewController: UIViewController {
     private lazy var albumPhotoCollectionalView: UICollectionView = {
         let layout = createCompositionalLayout()
         let collectionalView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionalView.register(PhotoCompositionalCell.self, forCellWithReuseIdentifier: PhotoCompositionalCell.identifier)
+        collectionalView.register(AlbumCompositionalCell.self, forCellWithReuseIdentifier: AlbumCompositionalCell.identifier)
+        collectionalView.register(PhotoTableCell.self, forCellWithReuseIdentifier: PhotoTableCell.identifier)
         collectionalView.register(AlbumSectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: AlbumSectionHeader.identifier)
         collectionalView.delegate = self
         collectionalView.dataSource = self
@@ -92,6 +93,25 @@ class AlbumPhotoViewController: UIViewController {
                 albumSectionLayout.boundarySupplementaryItems = [albumSectionHeaderLayout]
                 
                 return albumSectionLayout
+            case 2:
+                let tableItemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(50))
+                let tableLayoutItem = NSCollectionLayoutItem(layoutSize: tableItemSize)
+
+                let tableGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+                let tableLayoutGroup = NSCollectionLayoutGroup.vertical(layoutSize: tableGroupSize, subitems: [tableLayoutItem])
+                tableLayoutGroup.interItemSpacing = NSCollectionLayoutSpacing.fixed(5)
+
+                let tableSectionLayout = NSCollectionLayoutSection(group: tableLayoutGroup)
+                tableSectionLayout.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 20, bottom: 0, trailing: 20)
+
+                let tableSectionHeaderSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(44))
+                let tableSectionHeaderLayout = NSCollectionLayoutBoundarySupplementaryItem(
+                    layoutSize: tableSectionHeaderSize,
+                    elementKind: UICollectionView.elementKindSectionHeader,
+                    alignment: .top)
+                tableSectionLayout.boundarySupplementaryItems = [tableSectionHeaderLayout]
+
+                return tableSectionLayout
             default:
                 return nil
             }
@@ -110,7 +130,7 @@ class AlbumPhotoViewController: UIViewController {
 extension AlbumPhotoViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
+        return 3
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -119,16 +139,29 @@ extension AlbumPhotoViewController: UICollectionViewDataSource, UICollectionView
             return 9
         case 1:
             return 7
+        case 2:
+            return 10
         default:
             return 0
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = albumPhotoCollectionalView.dequeueReusableCell(withReuseIdentifier: PhotoCompositionalCell.identifier, for: indexPath)
-        cell.backgroundColor = .systemGreen
-        
-        return cell
+
+        switch indexPath.section {
+        case 0, 1:
+            let cell = albumPhotoCollectionalView.dequeueReusableCell(withReuseIdentifier: AlbumCompositionalCell.identifier, for: indexPath)
+            cell.backgroundColor = .systemGreen
+
+            return cell
+        case 2:
+            let cell = albumPhotoCollectionalView.dequeueReusableCell(withReuseIdentifier: PhotoTableCell.identifier, for: indexPath)
+            cell.backgroundColor = .systemBlue
+
+            return cell
+        default:
+            return UICollectionViewCell()
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -139,6 +172,9 @@ extension AlbumPhotoViewController: UICollectionViewDataSource, UICollectionView
             header?.sectionHeaderLabel.text = "Мои альбомы"
         case 1:
             header?.sectionHeaderLabel.text = "Общие альбомы"
+        case 2:
+            header?.sectionHeaderLabel.text = "Типы медиафайлов"
+            header?.sectionHeaderButton.isHidden = true
         default:
             header?.sectionHeaderLabel.text = ""
         }

@@ -7,11 +7,11 @@
 
 import UIKit
 
-class PhotoCompositionalCell: UICollectionViewCell {
+class AlbumCompositionalCell: UICollectionViewCell {
     
     // MARK: - Properties
     
-    static let identifier = "PhotoCompositionalCell"
+    static let identifier = "AlbumCompositionalCell"
     
     // MARK: - Initializers
     
