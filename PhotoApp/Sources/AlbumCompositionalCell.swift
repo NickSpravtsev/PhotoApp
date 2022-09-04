@@ -12,6 +12,8 @@ class AlbumCompositionalCell: UICollectionViewCell {
     // MARK: - Properties
     
     static let identifier = "AlbumCompositionalCell"
+
+    // MARK: 
     
     // MARK: - Initializers
     

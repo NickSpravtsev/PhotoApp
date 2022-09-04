@@ -9,6 +9,10 @@ import UIKit
 import SnapKit
 
 class AlbumPhotoViewController: UIViewController {
+
+    // MARK: - Propierties
+
+    private var albumItems: [[AlbumItem]]?
     
     // MARK: - Outlets
     
@@ -27,6 +31,7 @@ class AlbumPhotoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        albumItems = AlbumItem.albumItems
         setupNavigationBar()
         setupHierarchy()
         setupLayout()
@@ -138,7 +143,7 @@ extension AlbumPhotoViewController: UICollectionViewDataSource, UICollectionView
         case 0:
             return 9
         case 1:
-            return 7
+            return 5
         case 2:
             return 10
         case 3:
