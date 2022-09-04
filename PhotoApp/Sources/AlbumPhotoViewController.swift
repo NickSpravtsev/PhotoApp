@@ -16,6 +16,7 @@ class AlbumPhotoViewController: UIViewController {
         let layout = createCompositionalLayout()
         let collectionalView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionalView.register(PhotoCompositionalCell.self, forCellWithReuseIdentifier: PhotoCompositionalCell.identifier)
+        collectionalView.register(AlbumSectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: AlbumSectionHeader.identifier)
         collectionalView.delegate = self
         collectionalView.dataSource = self
         return collectionalView
@@ -25,7 +26,6 @@ class AlbumPhotoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
         setupNavigationBar()
         setupHierarchy()
         setupLayout()
@@ -53,16 +53,23 @@ class AlbumPhotoViewController: UIViewController {
         return UICollectionViewCompositionalLayout { sectorIndex, _ in
             let albumItemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalWidth(1))
             let albumLayoutItem = NSCollectionLayoutItem(layoutSize: albumItemSize)
-            albumLayoutItem.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
+            albumLayoutItem.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 10)
             
-            let albumGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1 / 2.1), heightDimension: .fractionalWidth(1))
+            let albumGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1 / 2.2), heightDimension: .fractionalWidth(1))
             let albumLayoutGroup = NSCollectionLayoutGroup.vertical(layoutSize: albumGroupSize, subitem: albumLayoutItem, count: 2)
-            //albumLayoutGroup.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
             
-            let albumLayoutSection = NSCollectionLayoutSection(group: albumLayoutGroup)
-            albumLayoutSection.orthogonalScrollingBehavior = .groupPaging
+            let albumSectionLayout = NSCollectionLayoutSection(group: albumLayoutGroup)
+            albumSectionLayout.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 0)
+            albumSectionLayout.orthogonalScrollingBehavior = .groupPaging
+
+            let albumSectionHeaderSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(44))
+            let albumSectionHeaderLayout = NSCollectionLayoutBoundarySupplementaryItem(
+                layoutSize: albumSectionHeaderSize,
+                elementKind: UICollectionView.elementKindSectionHeader,
+                alignment: .top)
+            albumSectionLayout.boundarySupplementaryItems = [albumSectionHeaderLayout]
             
-            return albumLayoutSection
+            return albumSectionLayout
         }
     }
     
@@ -77,7 +84,7 @@ class AlbumPhotoViewController: UIViewController {
 
 extension AlbumPhotoViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        return 7
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -85,5 +92,13 @@ extension AlbumPhotoViewController: UICollectionViewDataSource, UICollectionView
         cell.backgroundColor = .systemGreen
         
         return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: AlbumSectionHeader.identifier, for: indexPath) as? AlbumSectionHeader
+        header?.sectionHeaderLabel.text = "Мои альбомы"
+        
+
+        return header ?? UICollectionReusableView()
     }
 }
