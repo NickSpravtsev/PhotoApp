@@ -93,11 +93,11 @@ class AlbumPhotoViewController: UIViewController {
                 albumSectionLayout.boundarySupplementaryItems = [albumSectionHeaderLayout]
                 
                 return albumSectionLayout
-            case 2:
+            case 2, 3:
                 let tableItemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(50))
                 let tableLayoutItem = NSCollectionLayoutItem(layoutSize: tableItemSize)
 
-                let tableGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+                let tableGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(700))
                 let tableLayoutGroup = NSCollectionLayoutGroup.vertical(layoutSize: tableGroupSize, subitems: [tableLayoutItem])
                 tableLayoutGroup.interItemSpacing = NSCollectionLayoutSpacing.fixed(5)
 
@@ -130,7 +130,7 @@ class AlbumPhotoViewController: UIViewController {
 extension AlbumPhotoViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 3
+        return 4
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -141,6 +141,8 @@ extension AlbumPhotoViewController: UICollectionViewDataSource, UICollectionView
             return 7
         case 2:
             return 10
+        case 3:
+            return 3
         default:
             return 0
         }
@@ -154,7 +156,7 @@ extension AlbumPhotoViewController: UICollectionViewDataSource, UICollectionView
             cell.backgroundColor = .systemGreen
 
             return cell
-        case 2:
+        case 2, 3:
             let cell = albumPhotoCollectionalView.dequeueReusableCell(withReuseIdentifier: PhotoTableCell.identifier, for: indexPath)
             cell.backgroundColor = .systemBlue
 
@@ -170,10 +172,15 @@ extension AlbumPhotoViewController: UICollectionViewDataSource, UICollectionView
         switch indexPath.section {
         case 0:
             header?.sectionHeaderLabel.text = "Мои альбомы"
+            header?.sectionHeaderButton.isHidden = false
         case 1:
             header?.sectionHeaderLabel.text = "Общие альбомы"
+            header?.sectionHeaderButton.isHidden = false
         case 2:
             header?.sectionHeaderLabel.text = "Типы медиафайлов"
+            header?.sectionHeaderButton.isHidden = true
+        case 3:
+            header?.sectionHeaderLabel.text = "Другое"
             header?.sectionHeaderButton.isHidden = true
         default:
             header?.sectionHeaderLabel.text = ""
