@@ -26,6 +26,9 @@ class AlbumCompositionalCell: UICollectionViewCell {
 
     private lazy var albumImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.layer.cornerRadius = 10
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFill
 
         return imageView
     }()
@@ -38,6 +41,7 @@ class AlbumCompositionalCell: UICollectionViewCell {
 
     private lazy var photoCountLabel: UILabel = {
         let label = UILabel()
+        label.textColor = .systemGray
 
         return label
     }()
@@ -64,13 +68,15 @@ class AlbumCompositionalCell: UICollectionViewCell {
 
     private func setupLayout() {
         albumImageView.snp.makeConstraints { make in
-            make.left.top.right.bottom.equalTo(contentView)
-        }
-        albumNameLabel.snp.makeConstraints { make in
-            make.left.bottom.equalTo(contentView)
+            make.left.top.right.equalTo(contentView)
+            make.height.equalTo(contentView.snp.width)
         }
         photoCountLabel.snp.makeConstraints { make in
-            make.right.bottom.equalTo(contentView)
+            make.left.bottom.equalTo(contentView)
+        }
+        albumNameLabel.snp.makeConstraints { make in
+            make.left.equalTo(contentView)
+            make.bottom.equalTo(photoCountLabel.snp.top)
         }
     }
 }
