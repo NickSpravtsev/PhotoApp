@@ -13,6 +13,7 @@ class AlbumPhotoViewController: UIViewController {
     // MARK: - Propierties
 
     private var albumItems: [[AlbumItem]]?
+    private var photoTableItems: [[PhotoTableItem]]?
     
     // MARK: - Outlets
     
@@ -32,6 +33,7 @@ class AlbumPhotoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         albumItems = AlbumItem.albumItems
+        photoTableItems = PhotoTableItem.photoTableItems
         setupNavigationBar()
         setupHierarchy()
         setupLayout()
@@ -107,7 +109,7 @@ class AlbumPhotoViewController: UIViewController {
                 tableLayoutGroup.interItemSpacing = NSCollectionLayoutSpacing.fixed(5)
 
                 let tableSectionLayout = NSCollectionLayoutSection(group: tableLayoutGroup)
-                tableSectionLayout.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 20, bottom: 0, trailing: 20)
+                tableSectionLayout.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 20, bottom: 0, trailing: 0)
 
                 let tableSectionHeaderSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(44))
                 let tableSectionHeaderLayout = NSCollectionLayoutBoundarySupplementaryItem(
@@ -135,19 +137,15 @@ class AlbumPhotoViewController: UIViewController {
 extension AlbumPhotoViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 4
+        return (albumItems?.count ?? 0) + (photoTableItems?.count ?? 0)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
-        case 0:
-            return 9
-        case 1:
-            return 5
-        case 2:
-            return 10
-        case 3:
-            return 3
+        case 0, 1:
+            return albumItems?[section].count ?? 0
+        case 2, 3:
+            return photoTableItems?[section - 2].count ?? 0
         default:
             return 0
         }
@@ -160,13 +158,18 @@ extension AlbumPhotoViewController: UICollectionViewDataSource, UICollectionView
             let cell = albumPhotoCollectionalView.dequeueReusableCell(withReuseIdentifier: AlbumCompositionalCell.identifier, for: indexPath) as? AlbumCompositionalCell
             cell?.albumItem = albumItems?[indexPath.section][indexPath.row]
 
-
             return cell ?? UICollectionViewCell()
         case 2, 3:
-            let cell = albumPhotoCollectionalView.dequeueReusableCell(withReuseIdentifier: PhotoTableCell.identifier, for: indexPath)
-            cell.backgroundColor = .systemBlue
+            let cell = albumPhotoCollectionalView.dequeueReusableCell(withReuseIdentifier: PhotoTableCell.identifier, for: indexPath) as? PhotoTableCell
+            cell?.photoTableItem = photoTableItems?[indexPath.section - 2][indexPath.row]
 
-            return cell
+            if (indexPath.row + 1) == photoTableItems?[indexPath.section - 2].count {
+                cell?.cellSeparatorView.isHidden = true
+            } else {
+                cell?.cellSeparatorView.isHidden = false
+            }
+
+            return cell ?? UICollectionViewCell()
         default:
             return UICollectionViewCell()
         }
