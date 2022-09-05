@@ -109,7 +109,7 @@ class AlbumPhotoViewController: UIViewController {
                 tableLayoutGroup.interItemSpacing = NSCollectionLayoutSpacing.fixed(5)
 
                 let tableSectionLayout = NSCollectionLayoutSection(group: tableLayoutGroup)
-                tableSectionLayout.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 20, bottom: 0, trailing: 20)
+                tableSectionLayout.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 20, bottom: 0, trailing: 0)
 
                 let tableSectionHeaderSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(44))
                 let tableSectionHeaderLayout = NSCollectionLayoutBoundarySupplementaryItem(
@@ -137,7 +137,7 @@ class AlbumPhotoViewController: UIViewController {
 extension AlbumPhotoViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 4
+        return (albumItems?.count ?? 0) + (photoTableItems?.count ?? 0)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -162,6 +162,12 @@ extension AlbumPhotoViewController: UICollectionViewDataSource, UICollectionView
         case 2, 3:
             let cell = albumPhotoCollectionalView.dequeueReusableCell(withReuseIdentifier: PhotoTableCell.identifier, for: indexPath) as? PhotoTableCell
             cell?.photoTableItem = photoTableItems?[indexPath.section - 2][indexPath.row]
+
+            if (indexPath.row + 1) == photoTableItems?[indexPath.section - 2].count {
+                cell?.cellSeparatorView.isHidden = true
+            } else {
+                cell?.cellSeparatorView.isHidden = false
+            }
 
             return cell ?? UICollectionViewCell()
         default:
