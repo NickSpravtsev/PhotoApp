@@ -8,15 +8,9 @@
 import UIKit
 
 struct AlbumItem {
-    var image: UIImage
+    var imageName: String
     var name: String
     var photoCount: Int
-
-    init(imageName: String, name: String, photoCount: Int) {
-        self.image = UIImage(named: imageName) ?? .remove
-        self.name = name
-        self.photoCount = photoCount
-    }
 }
 
 extension AlbumItem {

@@ -8,15 +8,9 @@
 import UIKit
 
 struct PhotoTableItem {
-    var image: UIImage
+    var imageName: String
     var name: String
     var count: Int
-
-    init(imageName: String, name: String, count: Int) {
-        self.image = UIImage(systemName: imageName) ?? .remove
-        self.name = name
-        self.count = count
-    }
 }
 
 extension PhotoTableItem {

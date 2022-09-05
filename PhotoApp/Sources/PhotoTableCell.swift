@@ -16,7 +16,7 @@ class PhotoTableCell: UICollectionViewCell {
 
     var photoTableItem: PhotoTableItem? {
         didSet {
-            cellImageView.image = photoTableItem?.image
+            cellImageView.image = UIImage(systemName: photoTableItem?.imageName ?? "xmark.octagon")
             cellNameLabel.text = photoTableItem?.name
             cellCountLabel.text = String(photoTableItem?.count ?? 0)            
         }

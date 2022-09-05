@@ -16,7 +16,7 @@ class AlbumCompositionalCell: UICollectionViewCell {
 
     var albumItem: AlbumItem? {
         didSet {
-            albumImageView.image = albumItem?.image
+            albumImageView.image = UIImage(named: albumItem?.imageName ?? "")
             albumNameLabel.text = albumItem?.name
             photoCountLabel.text = String(albumItem?.photoCount ?? 0)
         }
