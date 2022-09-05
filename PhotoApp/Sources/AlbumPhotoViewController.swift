@@ -13,6 +13,7 @@ class AlbumPhotoViewController: UIViewController {
     // MARK: - Propierties
 
     private var albumItems: [[AlbumItem]]?
+    private var photoTableItems: [[PhotoTableItem]]?
     
     // MARK: - Outlets
     
@@ -32,6 +33,7 @@ class AlbumPhotoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         albumItems = AlbumItem.albumItems
+        photoTableItems = PhotoTableItem.photoTableItems
         setupNavigationBar()
         setupHierarchy()
         setupLayout()
@@ -140,14 +142,10 @@ extension AlbumPhotoViewController: UICollectionViewDataSource, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
-        case 0:
-            return 9
-        case 1:
-            return 5
-        case 2:
-            return 9
-        case 3:
-            return 2
+        case 0, 1:
+            return albumItems?[section].count ?? 0
+        case 2, 3:
+            return photoTableItems?[section - 2].count ?? 0
         default:
             return 0
         }
@@ -160,13 +158,12 @@ extension AlbumPhotoViewController: UICollectionViewDataSource, UICollectionView
             let cell = albumPhotoCollectionalView.dequeueReusableCell(withReuseIdentifier: AlbumCompositionalCell.identifier, for: indexPath) as? AlbumCompositionalCell
             cell?.albumItem = albumItems?[indexPath.section][indexPath.row]
 
-
             return cell ?? UICollectionViewCell()
         case 2, 3:
-            let cell = albumPhotoCollectionalView.dequeueReusableCell(withReuseIdentifier: PhotoTableCell.identifier, for: indexPath)
-            cell.backgroundColor = .systemBlue
+            let cell = albumPhotoCollectionalView.dequeueReusableCell(withReuseIdentifier: PhotoTableCell.identifier, for: indexPath) as? PhotoTableCell
+            cell?.photoTableItem = photoTableItems?[indexPath.section - 2][indexPath.row]
 
-            return cell
+            return cell ?? UICollectionViewCell()
         default:
             return UICollectionViewCell()
         }
