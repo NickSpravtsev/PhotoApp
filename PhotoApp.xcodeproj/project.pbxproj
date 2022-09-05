@@ -100,15 +100,10 @@
 			children = (
 				169EB73028C28F7E0000DA6A /* App */,
 				169EB73128C2A7210000DA6A /* PhotoTabBarController.swift */,
-				1641C41228C28D9E00AB2C33 /* AlbumPhotoViewController.swift */,
-				169EB74028C5340A0000DA6A /* AlbumSectionHeader.swift */,
-				169EB73928C2BE410000DA6A /* AlbumCompositionalCell.swift */,
-				169EB74628C553C20000DA6A /* AlbumModel.swift */,
-				169EB74228C545BD0000DA6A /* PhotoTableCell.swift */,
-				169EB74828C56ACB0000DA6A /* PhotoTableModel.swift */,
-				169EB73328C2A7FB0000DA6A /* MediaLibraryViewController.swift */,
-				169EB73528C2A8290000DA6A /* PersonalPhotoViewController.swift */,
-				169EB73728C2A85F0000DA6A /* SearchPhotoViewController.swift */,
+				169EB74A28C6A5A30000DA6A /* AlbumModule */,
+				169EB74D28C6A6300000DA6A /* SearchPhotoModule */,
+				169EB74C28C6A6030000DA6A /* PersonalPhotoModule */,
+				169EB74B28C6A5EF0000DA6A /* MediaLibraryModule */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -120,6 +115,51 @@
 				1641C41028C28D9E00AB2C33 /* SceneDelegate.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		169EB74A28C6A5A30000DA6A /* AlbumModule */ = {
+			isa = PBXGroup;
+			children = (
+				169EB74E28C6A65C0000DA6A /* Models */,
+				1641C41228C28D9E00AB2C33 /* AlbumPhotoViewController.swift */,
+				169EB74028C5340A0000DA6A /* AlbumSectionHeader.swift */,
+				169EB74228C545BD0000DA6A /* PhotoTableCell.swift */,
+				169EB73928C2BE410000DA6A /* AlbumCompositionalCell.swift */,
+			);
+			path = AlbumModule;
+			sourceTree = "<group>";
+		};
+		169EB74B28C6A5EF0000DA6A /* MediaLibraryModule */ = {
+			isa = PBXGroup;
+			children = (
+				169EB73328C2A7FB0000DA6A /* MediaLibraryViewController.swift */,
+			);
+			path = MediaLibraryModule;
+			sourceTree = "<group>";
+		};
+		169EB74C28C6A6030000DA6A /* PersonalPhotoModule */ = {
+			isa = PBXGroup;
+			children = (
+				169EB73528C2A8290000DA6A /* PersonalPhotoViewController.swift */,
+			);
+			path = PersonalPhotoModule;
+			sourceTree = "<group>";
+		};
+		169EB74D28C6A6300000DA6A /* SearchPhotoModule */ = {
+			isa = PBXGroup;
+			children = (
+				169EB73728C2A85F0000DA6A /* SearchPhotoViewController.swift */,
+			);
+			path = SearchPhotoModule;
+			sourceTree = "<group>";
+		};
+		169EB74E28C6A65C0000DA6A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				169EB74628C553C20000DA6A /* AlbumModel.swift */,
+				169EB74828C56ACB0000DA6A /* PhotoTableModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
