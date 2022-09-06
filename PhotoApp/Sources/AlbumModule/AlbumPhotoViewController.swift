@@ -199,8 +199,12 @@ extension AlbumPhotoViewController: UICollectionViewDataSource, UICollectionView
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) as? AlbumCompositionalCell {
+            print("Album \(cell.albumItem?.name ?? "") pressed")
+        }
         if let cell = collectionView.cellForItem(at: indexPath) as? PhotoTableCell {
             cell.cellPressed()
+            print("Cell \(cell.photoTableItem?.name ?? "") pressed")
         }
     }
 }
