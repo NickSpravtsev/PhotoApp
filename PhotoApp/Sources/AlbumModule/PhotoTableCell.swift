@@ -85,7 +85,8 @@ class PhotoTableCell: UICollectionViewCell {
 
     private func setupLayout() {
         cellImageView.snp.makeConstraints { make in
-            make.left.centerY.equalTo(contentView)
+            make.centerY.equalTo(contentView)
+            make.left.equalTo(contentView).offset(20)
             make.width.equalTo(34)
         }
         cellNameLabel.snp.makeConstraints { make in
@@ -94,7 +95,7 @@ class PhotoTableCell: UICollectionViewCell {
         }
         cellCountLabel.snp.makeConstraints { make in
             make.centerY.equalTo(contentView)
-            make.right.equalTo(contentView).offset(-35)
+            make.right.equalTo(contentView).offset(-40)
         }
         cellChevronImageView.snp.makeConstraints { make in
             make.centerY.equalTo(contentView)

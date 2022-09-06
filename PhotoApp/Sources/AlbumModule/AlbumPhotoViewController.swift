@@ -109,13 +109,14 @@ class AlbumPhotoViewController: UIViewController {
                 tableLayoutGroup.interItemSpacing = NSCollectionLayoutSpacing.fixed(5)
 
                 let tableSectionLayout = NSCollectionLayoutSection(group: tableLayoutGroup)
-                tableSectionLayout.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 20, bottom: 0, trailing: 0)
+                tableSectionLayout.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 0, bottom: 0, trailing: 0)
 
                 let tableSectionHeaderSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(44))
                 let tableSectionHeaderLayout = NSCollectionLayoutBoundarySupplementaryItem(
                     layoutSize: tableSectionHeaderSize,
                     elementKind: UICollectionView.elementKindSectionHeader,
                     alignment: .top)
+                tableSectionHeaderLayout.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 0)
                 tableSectionLayout.boundarySupplementaryItems = [tableSectionHeaderLayout]
 
                 return tableSectionLayout
