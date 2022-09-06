@@ -18,7 +18,7 @@ class PhotoTableCell: UICollectionViewCell {
         didSet {
             cellImageView.image = UIImage(systemName: photoTableItem?.imageName ?? "xmark.octagon")
             cellNameLabel.text = photoTableItem?.name
-            cellCountLabel.text = String(photoTableItem?.count ?? 0)            
+            cellCountLabel.text = String(photoTableItem?.count ?? 0)
         }
     }
 
@@ -111,7 +111,7 @@ class PhotoTableCell: UICollectionViewCell {
 
     // MARK: - Actions
 
-    func cellPressed() {
+    func cellPressedAnimation() {
         contentView.backgroundColor = .systemGray6
         Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { Timer in
             self.contentView.backgroundColor = .clear

@@ -203,7 +203,7 @@ extension AlbumPhotoViewController: UICollectionViewDataSource, UICollectionView
             print("Album \(cell.albumItem?.name ?? "") pressed")
         }
         if let cell = collectionView.cellForItem(at: indexPath) as? PhotoTableCell {
-            cell.cellPressed()
+            cell.cellPressedAnimation()
             print("Cell \(cell.photoTableItem?.name ?? "") pressed")
         }
     }
