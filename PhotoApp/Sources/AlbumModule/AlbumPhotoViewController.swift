@@ -196,4 +196,10 @@ extension AlbumPhotoViewController: UICollectionViewDataSource, UICollectionView
         }
         return header ?? UICollectionReusableView()
     }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) as? PhotoTableCell {
+            cell.cellPressed()
+        }
+    }
 }

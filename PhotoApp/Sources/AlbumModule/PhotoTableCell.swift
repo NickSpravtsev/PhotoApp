@@ -107,4 +107,13 @@ class PhotoTableCell: UICollectionViewCell {
             make.height.equalTo(2)
         }
     }
+
+    // MARK: - Actions
+
+    func cellPressed() {
+        contentView.backgroundColor = .systemGray6
+        Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { Timer in
+            self.contentView.backgroundColor = .clear
+        }
+    }
 }
