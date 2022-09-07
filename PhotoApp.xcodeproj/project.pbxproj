@@ -121,7 +121,6 @@
 		169EB74A28C6A5A30000DA6A /* AlbumModule */ = {
 			isa = PBXGroup;
 			children = (
-				169EB74E28C6A65C0000DA6A /* Model */,
 				1641C41228C28D9E00AB2C33 /* AlbumPhotoViewController.swift */,
 				169EB75228C93AE70000DA6A /* AlbumDetailViewController.swift */,
 				169EB74028C5340A0000DA6A /* AlbumSectionHeader.swift */,
@@ -153,13 +152,6 @@
 				169EB73728C2A85F0000DA6A /* SearchPhotoViewController.swift */,
 			);
 			path = SearchPhotoModule;
-			sourceTree = "<group>";
-		};
-		169EB74E28C6A65C0000DA6A /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
