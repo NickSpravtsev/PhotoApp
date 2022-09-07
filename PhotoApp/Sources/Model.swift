@@ -15,25 +15,25 @@ enum ImageType {
 struct AlbumItem {
     var imageName: String
     var name: String
-    var photoCount: Int
-    var imageType: ImageType
+    var photoCount: Int = 0
+    var imageType: ImageType = .external
 }
 
 extension AlbumItem {
-    static var albumItems: [[AlbumItem]] = [[AlbumItem(imageName: "recentAlbumImage", name: "Недавние", photoCount: 1024, imageType: .external),
-                                             AlbumItem(imageName: "favoritesAlbumImage", name: "Избранное", photoCount: 10, imageType: .external),
-                                             AlbumItem(imageName: "whatsAppAlbumImage", name: "WhatsApp", photoCount: 5, imageType: .external),
-                                             AlbumItem(imageName: "vacationAlbumImage", name: "Отпуск 2022", photoCount: 150, imageType: .external),
-                                             AlbumItem(imageName: "newyearAlbumImage", name: "Новый год 2021", photoCount: 45, imageType: .external),
-                                             AlbumItem(imageName: "wallpaperAlbumImage", name: "Обои", photoCount: 15, imageType: .external),
-                                             AlbumItem(imageName: "carAlbumImage", name: "Авто", photoCount: 5, imageType: .external),
-                                             AlbumItem(imageName: "forWorkAlbumImage", name: "Для работы", photoCount: 35, imageType: .external),
-                                             AlbumItem(imageName: "natureAlbumImage", name: "Природа", photoCount: 32, imageType: .external)],
-                                            [AlbumItem(imageName: "ItalyAlbumImage", name: "Италия 2017", photoCount: 120, imageType: .external),
-                                             AlbumItem(imageName: "ThailandAlbumImage", name: "Таиланд 2019", photoCount: 150, imageType: .external),
-                                             AlbumItem(imageName: "picturesAlbumImage", name: "Картинки", photoCount: 10, imageType: .external),
-                                             AlbumItem(imageName: "photoshoot2021AlbumImage", name: "Фотосессия 2021", photoCount: 70, imageType: .external),
-                                             AlbumItem(imageName: "photoshoot2022AlbumImage", name: "Фотосессия 2022", photoCount: 30, imageType: .external)],
+    static var albumItems: [[AlbumItem]] = [[AlbumItem(imageName: "recentAlbumImage", name: "Недавние", photoCount: 1024),
+                                             AlbumItem(imageName: "favoritesAlbumImage", name: "Избранное", photoCount: 10),
+                                             AlbumItem(imageName: "whatsAppAlbumImage", name: "WhatsApp", photoCount: 5),
+                                             AlbumItem(imageName: "vacationAlbumImage", name: "Отпуск 2022", photoCount: 150),
+                                             AlbumItem(imageName: "newyearAlbumImage", name: "Новый год 2021", photoCount: 45),
+                                             AlbumItem(imageName: "wallpaperAlbumImage", name: "Обои", photoCount: 15),
+                                             AlbumItem(imageName: "carAlbumImage", name: "Авто", photoCount: 5),
+                                             AlbumItem(imageName: "forWorkAlbumImage", name: "Для работы", photoCount: 35),
+                                             AlbumItem(imageName: "natureAlbumImage", name: "Природа", photoCount: 32)],
+                                            [AlbumItem(imageName: "ItalyAlbumImage", name: "Италия 2017", photoCount: 120),
+                                             AlbumItem(imageName: "ThailandAlbumImage", name: "Таиланд 2019", photoCount: 150),
+                                             AlbumItem(imageName: "picturesAlbumImage", name: "Картинки", photoCount: 10),
+                                             AlbumItem(imageName: "photoshoot2021AlbumImage", name: "Фотосессия 2021", photoCount: 70),
+                                             AlbumItem(imageName: "photoshoot2022AlbumImage", name: "Фотосессия 2022", photoCount: 30)],
                                             [AlbumItem(imageName: "video", name: "Видео", photoCount: 15, imageType: .system),
                                              AlbumItem(imageName: "person.crop.square", name: "Селфи", photoCount: 120, imageType: .system),
                                              AlbumItem(imageName: "livephoto", name: "Фото Live Photos", photoCount: 5, imageType: .system),
@@ -46,9 +46,9 @@ extension AlbumItem {
                                             [AlbumItem(imageName: "square.and.arrow.down", name: "Импортированные", photoCount: 50, imageType: .system),
                                              AlbumItem(imageName: "trash", name: "Недавно удаленные", photoCount: 34, imageType: .system)]]
 
-    static var mediaLibraryItems: [AlbumItem] = [AlbumItem(imageName: "media-1", name: "2018", photoCount: 0, imageType: .external),
-                                                 AlbumItem(imageName: "media-2", name: "2019", photoCount: 0, imageType: .external),
-                                                 AlbumItem(imageName: "media-3", name: "2020", photoCount: 0, imageType: .external),
-                                                 AlbumItem(imageName: "media-4", name: "2021", photoCount: 0, imageType: .external),
-                                                 AlbumItem(imageName: "media-5", name: "2022", photoCount: 0, imageType: .external)]
+    static var mediaLibraryItems: [AlbumItem] = [AlbumItem(imageName: "media-1", name: "2018"),
+                                                 AlbumItem(imageName: "media-2", name: "2019"),
+                                                 AlbumItem(imageName: "media-3", name: "2020"),
+                                                 AlbumItem(imageName: "media-4", name: "2021"),
+                                                 AlbumItem(imageName: "media-5", name: "2022")]
 }
