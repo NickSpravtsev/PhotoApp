@@ -19,11 +19,14 @@ class AlbumPhotoViewController: UIViewController {
     private lazy var albumPhotoCollectionalView: UICollectionView = {
         let layout = createCompositionalLayout()
         let collectionalView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+
         collectionalView.register(AlbumCompositionalCell.self, forCellWithReuseIdentifier: AlbumCompositionalCell.identifier)
         collectionalView.register(PhotoTableCell.self, forCellWithReuseIdentifier: PhotoTableCell.identifier)
         collectionalView.register(AlbumSectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: AlbumSectionHeader.identifier)
+
         collectionalView.delegate = self
         collectionalView.dataSource = self
+        
         return collectionalView
     }()
     
