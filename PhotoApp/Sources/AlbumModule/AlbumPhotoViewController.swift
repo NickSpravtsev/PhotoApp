@@ -13,7 +13,6 @@ class AlbumPhotoViewController: UIViewController {
     // MARK: - Propierties
 
     private var albumItems: [[AlbumItem]]?
-    private var photoTableItems: [[PhotoTableItem]]?
     
     // MARK: - Outlets
     
@@ -33,7 +32,6 @@ class AlbumPhotoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         albumItems = AlbumItem.albumItems
-        photoTableItems = PhotoTableItem.photoTableItems
         setupNavigationBar()
         setupHierarchy()
         setupLayout()
@@ -138,18 +136,11 @@ class AlbumPhotoViewController: UIViewController {
 extension AlbumPhotoViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return (albumItems?.count ?? 0) + (photoTableItems?.count ?? 0)
+        return albumItems?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        switch section {
-        case 0, 1:
-            return albumItems?[section].count ?? 0
-        case 2, 3:
-            return photoTableItems?[section - 2].count ?? 0
-        default:
-            return 0
-        }
+       return albumItems?[section].count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -162,9 +153,9 @@ extension AlbumPhotoViewController: UICollectionViewDataSource, UICollectionView
             return cell ?? UICollectionViewCell()
         case 2, 3:
             let cell = albumPhotoCollectionalView.dequeueReusableCell(withReuseIdentifier: PhotoTableCell.identifier, for: indexPath) as? PhotoTableCell
-            cell?.photoTableItem = photoTableItems?[indexPath.section - 2][indexPath.row]
+            cell?.photoTableItem = albumItems?[indexPath.section][indexPath.row]
 
-            if (indexPath.row + 1) == photoTableItems?[indexPath.section - 2].count {
+            if (indexPath.row + 1) ==  albumItems?[indexPath.section].count {
                 cell?.cellSeparatorView.isHidden = true
             } else {
                 cell?.cellSeparatorView.isHidden = false
@@ -208,7 +199,7 @@ extension AlbumPhotoViewController: UICollectionViewDataSource, UICollectionView
         if let cell = collectionView.cellForItem(at: indexPath) as? PhotoTableCell {
             cell.cellPressedAnimation()
             print("Cell \(cell.photoTableItem?.name ?? "") pressed")
-            detailViewController.photoTableItem = cell.photoTableItem
+            detailViewController.albumItem = cell.photoTableItem
             navigationController?.pushViewController(detailViewController, animated: true)
         }
     }

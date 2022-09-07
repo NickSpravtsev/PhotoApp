@@ -14,11 +14,11 @@ class PhotoTableCell: UICollectionViewCell {
 
     static let identifier = "PhotoTableCell"
 
-    var photoTableItem: PhotoTableItem? {
+    var photoTableItem: AlbumItem? {
         didSet {
             cellImageView.image = UIImage(systemName: photoTableItem?.imageName ?? "xmark.octagon")
             cellNameLabel.text = photoTableItem?.name
-            cellCountLabel.text = String(photoTableItem?.count ?? 0)
+            cellCountLabel.text = String(photoTableItem?.photoCount ?? 0)
         }
     }
 

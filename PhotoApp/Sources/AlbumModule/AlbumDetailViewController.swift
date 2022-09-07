@@ -13,7 +13,6 @@ class AlbumDetailViewController: UIViewController {
     // MARK: - Propierties
 
     var albumItem: AlbumItem?
-    var photoTableItem: PhotoTableItem?
     
     // MARK: - Outlets
 
@@ -61,16 +60,14 @@ class AlbumDetailViewController: UIViewController {
     }
 
     private func fullView() {
-        if albumItem != nil {
-            title = albumItem?.name
+        title = albumItem?.name
+        countLabel.text = "Количество элементов: \(albumItem?.photoCount ?? 0)"
+        if albumItem?.imageType == .external {
             albumImageView.image = UIImage(named: albumItem?.imageName ?? "")
             albumImageView.contentMode = .scaleAspectFill
-            countLabel.text = "Количество элементов: \(albumItem?.photoCount ?? 0)"
-        } else if photoTableItem != nil {
-            title = photoTableItem?.name
-            albumImageView.image = UIImage(systemName: photoTableItem?.imageName ?? "")
+        } else if albumItem?.imageType == .system {
+            albumImageView.image = UIImage(systemName: albumItem?.imageName ?? "")
             albumImageView.contentMode = .scaleAspectFit
-            countLabel.text = "Количество элементов: \(photoTableItem?.count ?? 0)"
         }
     }
 }
