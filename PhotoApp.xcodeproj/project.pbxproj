@@ -21,6 +21,7 @@
 		169EB74328C545BD0000DA6A /* PhotoTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169EB74228C545BD0000DA6A /* PhotoTableCell.swift */; };
 		169EB74728C553C20000DA6A /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169EB74628C553C20000DA6A /* Model.swift */; };
 		169EB75328C93AE70000DA6A /* AlbumDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169EB75228C93AE70000DA6A /* AlbumDetailViewController.swift */; };
+		169EB75528C9530C0000DA6A /* MediaLibraryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169EB75428C9530C0000DA6A /* MediaLibraryCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		169EB74228C545BD0000DA6A /* PhotoTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoTableCell.swift; sourceTree = "<group>"; };
 		169EB74628C553C20000DA6A /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		169EB75228C93AE70000DA6A /* AlbumDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailViewController.swift; sourceTree = "<group>"; };
+		169EB75428C9530C0000DA6A /* MediaLibraryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaLibraryCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				169EB73328C2A7FB0000DA6A /* MediaLibraryViewController.swift */,
+				169EB75428C9530C0000DA6A /* MediaLibraryCell.swift */,
 			);
 			path = MediaLibraryModule;
 			sourceTree = "<group>";
@@ -229,6 +232,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				169EB75528C9530C0000DA6A /* MediaLibraryCell.swift in Sources */,
 				169EB73228C2A7210000DA6A /* PhotoTabBarController.swift in Sources */,
 				169EB73628C2A8290000DA6A /* PersonalPhotoViewController.swift in Sources */,
 				169EB73A28C2BE410000DA6A /* AlbumCompositionalCell.swift in Sources */,
