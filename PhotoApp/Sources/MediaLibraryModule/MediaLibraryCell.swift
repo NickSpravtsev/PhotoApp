@@ -68,6 +68,14 @@ class MediaLibraryCell: UICollectionViewCell {
             make.left.equalTo(contentView).offset(20)
             make.top.equalTo(contentView).offset(10)
         }
+
+        // Shadow for item
+        contentView.layer.shadowColor = UIColor.black.cgColor
+        contentView.layer.shadowOpacity = 0.5
+        contentView.layer.shadowOffset = .zero
+        contentView.layer.shadowRadius = 10
+        contentView.layer.shouldRasterize = true
+        contentView.layer.rasterizationScale = UIScreen.main.scale
     }
 
 }
