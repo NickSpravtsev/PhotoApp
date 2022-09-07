@@ -109,13 +109,14 @@ class AlbumPhotoViewController: UIViewController {
                 tableLayoutGroup.interItemSpacing = NSCollectionLayoutSpacing.fixed(5)
 
                 let tableSectionLayout = NSCollectionLayoutSection(group: tableLayoutGroup)
-                tableSectionLayout.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 20, bottom: 0, trailing: 0)
+                tableSectionLayout.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 0, bottom: 0, trailing: 0)
 
                 let tableSectionHeaderSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(44))
                 let tableSectionHeaderLayout = NSCollectionLayoutBoundarySupplementaryItem(
                     layoutSize: tableSectionHeaderSize,
                     elementKind: UICollectionView.elementKindSectionHeader,
                     alignment: .top)
+                tableSectionHeaderLayout.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 0)
                 tableSectionLayout.boundarySupplementaryItems = [tableSectionHeaderLayout]
 
                 return tableSectionLayout
@@ -195,5 +196,20 @@ extension AlbumPhotoViewController: UICollectionViewDataSource, UICollectionView
             header?.sectionHeaderLabel.text = ""
         }
         return header ?? UICollectionReusableView()
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let detailViewController = AlbumDetailViewController()
+        if let cell = collectionView.cellForItem(at: indexPath) as? AlbumCompositionalCell {
+            print("Album \(cell.albumItem?.name ?? "") pressed")
+            detailViewController.albumItem = cell.albumItem
+            navigationController?.pushViewController(detailViewController, animated: true)
+        }
+        if let cell = collectionView.cellForItem(at: indexPath) as? PhotoTableCell {
+            cell.cellPressedAnimation()
+            print("Cell \(cell.photoTableItem?.name ?? "") pressed")
+            detailViewController.photoTableItem = cell.photoTableItem
+            navigationController?.pushViewController(detailViewController, animated: true)
+        }
     }
 }

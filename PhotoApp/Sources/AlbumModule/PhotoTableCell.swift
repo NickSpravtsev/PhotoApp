@@ -18,7 +18,7 @@ class PhotoTableCell: UICollectionViewCell {
         didSet {
             cellImageView.image = UIImage(systemName: photoTableItem?.imageName ?? "xmark.octagon")
             cellNameLabel.text = photoTableItem?.name
-            cellCountLabel.text = String(photoTableItem?.count ?? 0)            
+            cellCountLabel.text = String(photoTableItem?.count ?? 0)
         }
     }
 
@@ -85,7 +85,8 @@ class PhotoTableCell: UICollectionViewCell {
 
     private func setupLayout() {
         cellImageView.snp.makeConstraints { make in
-            make.left.centerY.equalTo(contentView)
+            make.centerY.equalTo(contentView)
+            make.left.equalTo(contentView).offset(20)
             make.width.equalTo(34)
         }
         cellNameLabel.snp.makeConstraints { make in
@@ -94,7 +95,7 @@ class PhotoTableCell: UICollectionViewCell {
         }
         cellCountLabel.snp.makeConstraints { make in
             make.centerY.equalTo(contentView)
-            make.right.equalTo(contentView).offset(-35)
+            make.right.equalTo(contentView).offset(-40)
         }
         cellChevronImageView.snp.makeConstraints { make in
             make.centerY.equalTo(contentView)
@@ -105,6 +106,15 @@ class PhotoTableCell: UICollectionViewCell {
             make.left.equalTo(cellNameLabel)
             make.right.equalTo(contentView)
             make.height.equalTo(2)
+        }
+    }
+
+    // MARK: - Actions
+
+    func cellPressedAnimation() {
+        contentView.backgroundColor = .systemGray6
+        Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { Timer in
+            self.contentView.backgroundColor = .clear
         }
     }
 }

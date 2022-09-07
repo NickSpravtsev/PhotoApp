@@ -28,6 +28,7 @@ class AlbumSectionHeader: UICollectionReusableView {
         let button = UIButton(type: .system)
         button.setTitle("Все", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .regular)
+        button.addTarget(self, action: #selector(sectionHeaderButtonPressed), for: .touchUpInside)
         
         return button
     }()
@@ -76,5 +77,11 @@ class AlbumSectionHeader: UICollectionReusableView {
             make.left.equalTo(self)
             make.bottom.equalTo(sectionHeaderLabel.snp.top).offset(-10)
         }
+    }
+
+    // MARK: - Actions
+
+    @objc private func sectionHeaderButtonPressed() {
+        print("sectionHeaderButton pressed")
     }
 }
