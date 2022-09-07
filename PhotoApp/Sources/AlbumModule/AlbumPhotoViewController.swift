@@ -199,12 +199,17 @@ extension AlbumPhotoViewController: UICollectionViewDataSource, UICollectionView
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let detailViewController = AlbumDetailViewController()
         if let cell = collectionView.cellForItem(at: indexPath) as? AlbumCompositionalCell {
             print("Album \(cell.albumItem?.name ?? "") pressed")
+            detailViewController.albumItem = cell.albumItem
+            navigationController?.pushViewController(detailViewController, animated: true)
         }
         if let cell = collectionView.cellForItem(at: indexPath) as? PhotoTableCell {
             cell.cellPressedAnimation()
             print("Cell \(cell.photoTableItem?.name ?? "") pressed")
+            detailViewController.photoTableItem = cell.photoTableItem
+            navigationController?.pushViewController(detailViewController, animated: true)
         }
     }
 }
