@@ -77,5 +77,4 @@ class MediaLibraryCell: UICollectionViewCell {
         contentView.layer.shouldRasterize = true
         contentView.layer.rasterizationScale = UIScreen.main.scale
     }
-
 }
