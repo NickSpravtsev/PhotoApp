@@ -14,7 +14,7 @@ class SearchPhotoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        title = "Поиск (в разработке)"
+        title = "Поиск"
         navigationController?.navigationBar.prefersLargeTitles = true
     }
 }
