@@ -14,7 +14,6 @@ class AlbumSectionHeader: UICollectionReusableView {
     
     static let identifier = "AlbumSectionHeader"
     
-    
     // MARK: - Outlets
     
     lazy var sectionHeaderLabel: UILabel = {
@@ -65,12 +64,10 @@ class AlbumSectionHeader: UICollectionReusableView {
             make.left.equalTo(self)
             make.bottom.equalTo(self)
         }
-        
         sectionHeaderButton.snp.makeConstraints { make in
             make.right.equalTo(self).offset(-28)
             make.bottom.equalTo(sectionHeaderLabel).offset(3)
         }
-        
         sectionSeparatorView.snp.makeConstraints { make in
             make.height.equalTo(2)
             make.width.equalTo(self)
@@ -78,9 +75,9 @@ class AlbumSectionHeader: UICollectionReusableView {
             make.bottom.equalTo(sectionHeaderLabel.snp.top).offset(-10)
         }
     }
-
+    
     // MARK: - Actions
-
+    
     @objc private func sectionHeaderButtonPressed() {
         print("sectionHeaderButton pressed")
     }

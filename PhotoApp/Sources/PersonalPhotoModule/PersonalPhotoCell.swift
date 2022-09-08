@@ -40,7 +40,6 @@ class PersonalPhotoCell: UICollectionViewCell {
         return label
     }()
     
-    
     // MARK: - Initializers
     
     override init(frame: CGRect) {

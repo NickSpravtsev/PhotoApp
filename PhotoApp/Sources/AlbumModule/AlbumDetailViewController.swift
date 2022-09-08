@@ -9,30 +9,30 @@ import UIKit
 import SnapKit
 
 class AlbumDetailViewController: UIViewController {
-
+    
     // MARK: - Propierties
-
+    
     var albumItem: AlbumItem?
     
     // MARK: - Outlets
-
+    
     private lazy var albumImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 10
-
+        
         return imageView
     }()
-
+    
     private lazy var countLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 20, weight: .regular)
-
+        
         return label
     }()
-
+    
     // MARK: - Lifecycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemGray6
@@ -40,14 +40,14 @@ class AlbumDetailViewController: UIViewController {
         setupLayout()
         fullView()
     }
-
+    
     // MARK: - Setup
-
+    
     private func setupHierarchy() {
         view.addSubview(albumImageView)
         view.addSubview(countLabel)
     }
-
+    
     private func setupLayout() {
         albumImageView.snp.makeConstraints { make in
             make.center.equalTo(view)
@@ -58,7 +58,7 @@ class AlbumDetailViewController: UIViewController {
             make.top.equalTo(albumImageView.snp.bottom).offset(20)
         }
     }
-
+    
     private func fullView() {
         title = albumItem?.name
         countLabel.text = "Количество элементов: \(albumItem?.photoCount ?? 0)"

@@ -9,9 +9,9 @@ import UIKit
 import SnapKit
 
 class AlbumPhotoViewController: UIViewController {
-
+    
     // MARK: - Propierties
-
+    
     private var albumItems: [[AlbumItem]]?
     
     // MARK: - Outlets
@@ -19,11 +19,11 @@ class AlbumPhotoViewController: UIViewController {
     private lazy var albumPhotoCollectionalView: UICollectionView = {
         let layout = createCompositionalLayout()
         let collectionalView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-
+        
         collectionalView.register(AlbumCompositionalCell.self, forCellWithReuseIdentifier: AlbumCompositionalCell.identifier)
         collectionalView.register(PhotoTableCell.self, forCellWithReuseIdentifier: PhotoTableCell.identifier)
         collectionalView.register(AlbumSectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: AlbumSectionHeader.identifier)
-
+        
         collectionalView.delegate = self
         collectionalView.dataSource = self
         
@@ -104,14 +104,14 @@ class AlbumPhotoViewController: UIViewController {
             case 2, 3:
                 let tableItemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(50))
                 let tableLayoutItem = NSCollectionLayoutItem(layoutSize: tableItemSize)
-
+                
                 let tableGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(700))
                 let tableLayoutGroup = NSCollectionLayoutGroup.vertical(layoutSize: tableGroupSize, subitems: [tableLayoutItem])
                 tableLayoutGroup.interItemSpacing = NSCollectionLayoutSpacing.fixed(5)
-
+                
                 let tableSectionLayout = NSCollectionLayoutSection(group: tableLayoutGroup)
                 tableSectionLayout.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 0, bottom: 0, trailing: 0)
-
+                
                 let tableSectionHeaderSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(44))
                 let tableSectionHeaderLayout = NSCollectionLayoutBoundarySupplementaryItem(
                     layoutSize: tableSectionHeaderSize,
@@ -119,7 +119,7 @@ class AlbumPhotoViewController: UIViewController {
                     alignment: .top)
                 tableSectionHeaderLayout.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 0)
                 tableSectionLayout.boundarySupplementaryItems = [tableSectionHeaderLayout]
-
+                
                 return tableSectionLayout
             default:
                 return nil
@@ -143,27 +143,27 @@ extension AlbumPhotoViewController: UICollectionViewDataSource, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-       return albumItems?[section].count ?? 0
+        return albumItems?[section].count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
+        
         switch indexPath.section {
         case 0, 1:
             let cell = albumPhotoCollectionalView.dequeueReusableCell(withReuseIdentifier: AlbumCompositionalCell.identifier, for: indexPath) as? AlbumCompositionalCell
             cell?.albumItem = albumItems?[indexPath.section][indexPath.row]
-
+            
             return cell ?? UICollectionViewCell()
         case 2, 3:
             let cell = albumPhotoCollectionalView.dequeueReusableCell(withReuseIdentifier: PhotoTableCell.identifier, for: indexPath) as? PhotoTableCell
             cell?.photoTableItem = albumItems?[indexPath.section][indexPath.row]
-
+            
             if (indexPath.row + 1) ==  albumItems?[indexPath.section].count {
                 cell?.cellSeparatorView.isHidden = true
             } else {
                 cell?.cellSeparatorView.isHidden = false
             }
-
+            
             return cell ?? UICollectionViewCell()
         default:
             return UICollectionViewCell()
@@ -191,7 +191,7 @@ extension AlbumPhotoViewController: UICollectionViewDataSource, UICollectionView
         }
         return header ?? UICollectionReusableView()
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailViewController = AlbumDetailViewController()
         if let cell = collectionView.cellForItem(at: indexPath) as? AlbumCompositionalCell {

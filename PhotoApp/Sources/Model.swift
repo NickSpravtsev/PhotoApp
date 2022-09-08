@@ -45,13 +45,13 @@ extension AlbumItem {
                                              AlbumItem(imageName: "record.circle", name: "Записи экрана", photoCount: 2, imageType: .system)],
                                             [AlbumItem(imageName: "square.and.arrow.down", name: "Импортированные", photoCount: 50, imageType: .system),
                                              AlbumItem(imageName: "trash", name: "Недавно удаленные", photoCount: 34, imageType: .system)]]
-
+    
     static var mediaLibraryItems: [AlbumItem] = [AlbumItem(imageName: "media-1", name: "2018"),
                                                  AlbumItem(imageName: "media-2", name: "2019"),
                                                  AlbumItem(imageName: "media-3", name: "2020"),
                                                  AlbumItem(imageName: "media-4", name: "2021"),
                                                  AlbumItem(imageName: "media-5", name: "2022")]
-
+    
     static var personalPhotoItems: [[AlbumItem]] = [[AlbumItem(imageName: "memory-1", name: "ОТПУСК"),
                                                      AlbumItem(imageName: "memory-2", name: "В КОМПАНИИ"),
                                                      AlbumItem(imageName: "memory-3", name: "СКВОЗЬ ГОДА"),

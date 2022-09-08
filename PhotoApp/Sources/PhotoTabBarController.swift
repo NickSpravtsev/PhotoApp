@@ -56,5 +56,4 @@ class PhotoTabBarController: UITabBarController, UITabBarControllerDelegate {
         self.setViewControllers(controllers, animated: true)
         self.selectedIndex = 2
     }
-    
 }
