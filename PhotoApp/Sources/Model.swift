@@ -51,4 +51,14 @@ extension AlbumItem {
                                                  AlbumItem(imageName: "media-3", name: "2020"),
                                                  AlbumItem(imageName: "media-4", name: "2021"),
                                                  AlbumItem(imageName: "media-5", name: "2022")]
+
+    static var personalPhotoItems: [[AlbumItem]] = [[AlbumItem(imageName: "memory-1", name: "ОТПУСК"),
+                                                     AlbumItem(imageName: "memory-2", name: "В КОМПАНИИ"),
+                                                     AlbumItem(imageName: "memory-3", name: "СКВОЗЬ ГОДА"),
+                                                     AlbumItem(imageName: "memory-4", name: "ОТДЫХ"),
+                                                     AlbumItem(imageName: "memory-5", name: "ЕДА")],
+                                                    [AlbumItem(imageName: "compilation-1", name: "01.05.2022"),
+                                                     AlbumItem(imageName: "compilation-2", name: "31.12.2021"),
+                                                     AlbumItem(imageName: "compilation-3", name: "07.01.2022"),
+                                                     AlbumItem(imageName: "compilation-4", name: "04.07.2022")]]
 }
